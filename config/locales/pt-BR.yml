@@ -1,0 +1,10 @@
+pt-BR:
+  menu:
+    home: Início
+    password: Senha
+    mfa: MFA
+    logout: Sair
+  pages:
+    home:
+      headline: "Isso é só um app de teste"
+      intro: Não crie muitas expectativas :)

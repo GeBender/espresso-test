@@ -48,12 +48,14 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem 'image_processing', '~> 1.2'
 
-gem 'mysql2'
-gem 'simplecov', require: false, group: :test
 gem 'devise', '~> 4.9'
 gem 'devise-security'
+gem 'dotenv-rails', groups: %i[development test]
+gem 'devise-i18n'
+gem 'mysql2'
+gem 'rails-i18n'
 gem 'recaptcha'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'simplecov', require: false, group: :test
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -78,4 +80,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-

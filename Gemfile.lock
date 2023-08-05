@@ -94,6 +94,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.11.0)
+      devise (>= 4.9.0)
     devise-security (0.18.0)
       devise (>= 4.3.0)
     diff-lcs (1.5.0)
@@ -172,6 +174,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.7)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -262,6 +267,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  devise-i18n
   devise-security
   dotenv-rails
   importmap-rails
@@ -269,6 +275,7 @@ DEPENDENCIES
   mysql2
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rails-i18n
   recaptcha
   redis (~> 4.0)
   rspec-rails
