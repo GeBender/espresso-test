@@ -9,18 +9,25 @@ cd espresso-test
 bundle install
 ```
 
-Como usamos o adaptador de banco sqlite3 padrão de novos apps, não precisa criar um banco de dados, apenas rode as migrations
-```
-rails db:migrate
-```
-
-Antes de subir a aplicação, crie um arauivo `.env` e sete essas 3 variáveis, as duas primeiras é para o envio de e-mails (precisa ser um Gmail) e a terceira é para o duplo fator de autenticação:
+Antes de subir a aplicação, crie um arquivo `.env` e sete essas 5 variáveis, as duas primeiras é para o envio de e-mails (precisa ser um Gmail) e a terceira é para o duplo fator de autenticação e as duas últimas são o usuário e a senha do banco Postgres
 ```
 SENDER_USERNAME=seuemail@gmail.com
 SENDER_PASSWORD=senha_de_app_do_gmail
 OTP_SECRET_ENCRYPTION_KEY=sua_chave_opt
+MYAPP_DATABASE_USERNAME=user
+MYAPP_DATABASE_PASSWORD=senha
 ```
 Lembre-se que para o Gmail enviar via app é preciso criar uma senha de App, ou seja, não é a sua senha de acesso normal ao Gmail.
+
+### Agora vamos aos bancos
+    - Crie um banco chamado espresso_development, no postgres
+    - Crie um banco chamado espresso_test, no postgres
+
+Agora vamos rodar as migrations e estamos quase lá
+```
+rails db:migrate
+rails db:migrate RAILS_ENV=test
+```
 
 ### Pronto, agora sim, pode levantar o servidor
 ```
