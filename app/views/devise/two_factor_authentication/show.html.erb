@@ -1,0 +1,15 @@
+<div class="container public-box">
+  <%= form_tag([resource_name, :two_factor_authentication], :method => :put) do %>
+    <img height="100" style="vertical-align:middle" alt="Espresso" class="logo mb-15" src="https://app.espressoapp.com.br/assets/icon-logo-2c16709e87b3209f5461eff6eb128d3c624138113e6d2d617d12c253831ada97.png">
+    <h5 class="h3 mb-3 font-weight-normal"><%== current_user.otp_secret_key ? t(:headline, scope: [:pages, :confirm]) : t(:headline_email, scope: [:pages, :confirm]) -%></h5>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <input type="text" name="code" id="code" class="form-control" />
+    
+    <p class="">&nbsp;</p>
+    <%= submit_tag t(:cta, scope: [:pages, :confirm]), class: 'btn btn-lg btn-primary btn-block mb-15' %>
+    <p class="mt-5 text-muted">
+      &copy; <%== Date.today.strftime('%Y') -%><br>
+      <%== t(:footer_copyright) -%>
+    </p>
+  <% end %>
+</div>

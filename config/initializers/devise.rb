@@ -178,7 +178,8 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 12..32
+  config.password_complexity = { digit: 1, lower: 1, symbol: 1, upper: 1 }
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -188,7 +189,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  # config.timeout_in = 30.minutes
+  config.timeout_in = 5.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -204,14 +205,14 @@ Devise.setup do |config|
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  config.unlock_strategy = :both
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  # config.maximum_attempts = 20
+  config.maximum_attempts = 5
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  # config.unlock_in = 1.hour
+  config.unlock_in = 10.minutes
 
   # Warn on the last attempt before the account is locked.
   # config.last_attempt_warning = true
@@ -224,7 +225,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 5.minutes
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
@@ -278,6 +279,9 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   # config.warden do |manager|
+  #   manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
+  # end
+  # config.warden do |manager|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
@@ -309,5 +313,16 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
-  # config.sign_in_after_change_password = true
+  config.sign_in_after_change_password = false
+
+  # Two Factor Auth Config
+  config.max_login_attempts = 3  # Maximum second factor attempts count.
+  config.allowed_otp_drift_seconds = 30  # Allowed TOTP time drift between client and server.
+  config.otp_length = 6  # TOTP code length
+  config.direct_otp_valid_for = 5.minutes  # Time before direct OTP becomes invalid
+  config.direct_otp_length = 6  # Direct OTP code length
+  config.remember_otp_session_for_seconds = 30.days  # Time before browser has to perform 2fA again. Default is 0.
+  config.otp_secret_encryption_key = ENV['OTP_SECRET_ENCRYPTION_KEY']
+  config.second_factor_resource_id = 'id' # Field or method name used to set value for 2fA remember cookie
+  config.delete_cookie_on_logout = true # Delete cookie when user signs out, to force 2fA again on login
 end

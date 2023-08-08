@@ -9,10 +9,13 @@ Bundler.require(*Rails.groups)
 module EspressoTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.time_zone = 'Brasilia'
+
     config.load_defaults 7.0
     config.i18n.default_locale = :'pt-BR'
     # Configuration for the application, engines, and railties goes here.
     #
+
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

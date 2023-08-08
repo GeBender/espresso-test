@@ -1,0 +1,36 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h2><%== t(:headline, scope: [:pages, :mfa]) -%></h2>
+</div>
+<div class="card-deck mb-3 text-center">
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h5 class="my-0 font-weight-normal">Use o Google Authenticator para digitalizar o código QR abaixo:</h5>
+    </div>
+    <div class="card-body">
+      <%==  RQRCode::QRCode.new(@qr_code).as_svg(
+        color: "000",
+        shape_rendering: "crispEdges",
+        module_size: 5,
+        standalone: true,
+        use_path: true) -%><br>
+      <p>Ou insira manualmente o seguinte segredo no aplicativo Google Authenticator:</p>
+      <%= current_user.encrypted_otp_secret_key %>
+    </div>
+  </div>
+</div>
+
+
+<div class="card-deck mb-3 text-center">
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h5 class="my-0 font-weight-normal">Insira o código de verificação do Google Authenticator</h5>
+    </div>
+    <div class="card-body">
+      <%= form_tag mfa_path, method: :post do %>
+        <%= text_field_tag :otp_attempt %>
+        <%= hidden_field_tag :otp_secret_key, current_user.otp_secret_key %>
+        <%= submit_tag 'Ativar MFA' %>
+      <% end %>
+    </div>
+  </div>
+</div>

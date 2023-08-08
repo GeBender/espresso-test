@@ -18,9 +18,6 @@ gem 'puma', '~> 5.0'
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem 'turbo-rails'
-
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
@@ -49,13 +46,16 @@ gem 'bootsnap', require: false
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise', '~> 4.9'
+gem 'devise-i18n'
 gem 'devise-security'
 gem 'dotenv-rails', groups: %i[development test]
-gem 'devise-i18n'
+gem 'mini_magick'
 gem 'mysql2'
 gem 'rails-i18n'
 gem 'recaptcha'
+gem 'rqrcode', '~> 2.0'
 gem 'simplecov', require: false, group: :test
+gem 'two_factor_authentication'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

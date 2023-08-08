@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'application#index'
 
-  # Defines the root path route ("/")
-  root "app#index"
+  get :password, to: 'users#password'
+  post :password, to: 'users#update_password'
+  get :mfa, to: 'users#mfa'
+  get :cancel_mfa, to: 'users#cancel_mfa'
+  post :mfa, to: 'users#update_mfa'
+
+  resources :users, only: [] do
+    post :generate_qr_code, on: :member
+  end
+
+  devise_for :users, controllers: {
+    passwords: 'passwords'
+  }
 end
