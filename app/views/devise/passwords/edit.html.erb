@@ -1,5 +1,5 @@
 <div class="container public-box">
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'custom-form-class', id: 'recaptcha-form' }, data: { turbo: false }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: user_password_path, html: { method: :put, class: 'custom-form-class', id: 'recaptcha-form' }, data: { turbo: false }) do |f| %>
     <img height="100" style="vertical-align:middle" alt="Espresso" class="logo mb-15" src="https://app.espressoapp.com.br/assets/icon-logo-2c16709e87b3209f5461eff6eb128d3c624138113e6d2d617d12c253831ada97.png">
     <h5 class="h3 mb-3 font-weight-normal"><%== t(:headline_reset, scope: [:pages, :public]) -%></h5>
     <%= render "devise/shared/error_messages", resource: resource %>
